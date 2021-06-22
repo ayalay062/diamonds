@@ -1,0 +1,802 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DiampndsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cleanLevels">
+          <Key>
+            <PropertyRef Name="levelId" />
+          </Key>
+          <Property Name="levelId" Type="int" Nullable="false" />
+          <Property Name="cleanLevel" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="colors">
+          <Key>
+            <PropertyRef Name="colorId" />
+          </Key>
+          <Property Name="colorId" Type="int" Nullable="false" />
+          <Property Name="color" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Diamonds">
+          <Key>
+            <PropertyRef Name="diamondId" />
+          </Key>
+          <Property Name="diamondId" Type="int" Nullable="false" />
+          <Property Name="diamondName" Type="nvarchar" MaxLength="10" />
+          <Property Name="cleanLevelId" Type="int" />
+          <Property Name="colorId" Type="int" />
+          <Property Name="shapeId" Type="int" />
+          <Property Name="CT" Type="float" />
+        </EntityType>
+        <EntityType Name="diamondStatus">
+          <Key>
+            <PropertyRef Name="diamondStatusId" />
+          </Key>
+          <Property Name="diamondStatusId" Type="int" Nullable="false" />
+          <Property Name="statusId" Type="int" />
+          <Property Name="diamondId" Type="int" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="endDate" Type="date" />
+          <Property Name="professionalId" Type="int" />
+          <Property Name="price" Type="float" />
+          <Property Name="CT" Type="float" />
+        </EntityType>
+        <EntityType Name="priceList">
+          <Key>
+            <PropertyRef Name="pricrId" />
+          </Key>
+          <Property Name="pricrId" Type="int" Nullable="false" />
+          <Property Name="cleanLevelId" Type="int" />
+          <Property Name="colorId" Type="int" />
+          <Property Name="shapeId" Type="int" />
+          <Property Name="minCT" Type="float" />
+          <Property Name="maxCT" Type="float" />
+          <Property Name="price" Type="int" />
+        </EntityType>
+        <EntityType Name="professionales">
+          <Key>
+            <PropertyRef Name="professionalId" />
+          </Key>
+          <Property Name="professionalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="statusId" Type="int" />
+          <Property Name="price" Type="float" />
+          <Property Name="userId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="shapes">
+          <Key>
+            <PropertyRef Name="shapeId" />
+          </Key>
+          <Property Name="shapeId" Type="int" Nullable="false" />
+          <Property Name="shape" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="statusId" />
+          </Key>
+          <Property Name="statusId" Type="int" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="traderDiamonds">
+          <Key>
+            <PropertyRef Name="diamondTraderId" />
+          </Key>
+          <Property Name="diamondTraderId" Type="int" Nullable="false" />
+          <Property Name="TraderId" Type="int" />
+          <Property Name="diamondId" Type="int" />
+          <Property Name="shoppingDate" Type="date" />
+          <Property Name="shoppingPrice" Type="int" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="entringName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="10" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="15" />
+          <Property Name="mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="mobile" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Diamonds_cleanLevels">
+          <End Role="cleanLevels" Type="Self.cleanLevels" Multiplicity="0..1" />
+          <End Role="Diamonds" Type="Self.Diamonds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cleanLevels">
+              <PropertyRef Name="levelId" />
+            </Principal>
+            <Dependent Role="Diamonds">
+              <PropertyRef Name="cleanLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diamonds_colors">
+          <End Role="colors" Type="Self.colors" Multiplicity="0..1" />
+          <End Role="Diamonds" Type="Self.Diamonds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colors">
+              <PropertyRef Name="colorId" />
+            </Principal>
+            <Dependent Role="Diamonds">
+              <PropertyRef Name="colorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diamonds_shapes">
+          <End Role="shapes" Type="Self.shapes" Multiplicity="0..1" />
+          <End Role="Diamonds" Type="Self.Diamonds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shapes">
+              <PropertyRef Name="shapeId" />
+            </Principal>
+            <Dependent Role="Diamonds">
+              <PropertyRef Name="shapeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_diamondStatus_Diamonds">
+          <End Role="Diamonds" Type="Self.Diamonds" Multiplicity="0..1" />
+          <End Role="diamondStatus" Type="Self.diamondStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diamonds">
+              <PropertyRef Name="diamondId" />
+            </Principal>
+            <Dependent Role="diamondStatus">
+              <PropertyRef Name="diamondId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_diamondStatus_professionales">
+          <End Role="professionales" Type="Self.professionales" Multiplicity="0..1" />
+          <End Role="diamondStatus" Type="Self.diamondStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="professionales">
+              <PropertyRef Name="professionalId" />
+            </Principal>
+            <Dependent Role="diamondStatus">
+              <PropertyRef Name="professionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_diamondStatus_status">
+          <End Role="status" Type="Self.status" Multiplicity="0..1" />
+          <End Role="diamondStatus" Type="Self.diamondStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="statusId" />
+            </Principal>
+            <Dependent Role="diamondStatus">
+              <PropertyRef Name="statusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_priceList_cleanLevels">
+          <End Role="cleanLevels" Type="Self.cleanLevels" Multiplicity="0..1" />
+          <End Role="priceList" Type="Self.priceList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cleanLevels">
+              <PropertyRef Name="levelId" />
+            </Principal>
+            <Dependent Role="priceList">
+              <PropertyRef Name="cleanLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_priceList_colors">
+          <End Role="colors" Type="Self.colors" Multiplicity="0..1" />
+          <End Role="priceList" Type="Self.priceList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colors">
+              <PropertyRef Name="colorId" />
+            </Principal>
+            <Dependent Role="priceList">
+              <PropertyRef Name="colorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_priceList_shapes">
+          <End Role="shapes" Type="Self.shapes" Multiplicity="0..1" />
+          <End Role="priceList" Type="Self.priceList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shapes">
+              <PropertyRef Name="shapeId" />
+            </Principal>
+            <Dependent Role="priceList">
+              <PropertyRef Name="shapeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_professionales_status">
+          <End Role="status" Type="Self.status" Multiplicity="0..1" />
+          <End Role="professionales" Type="Self.professionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="statusId" />
+            </Principal>
+            <Dependent Role="professionales">
+              <PropertyRef Name="statusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_traderDiamonds_Diamonds">
+          <End Role="Diamonds" Type="Self.Diamonds" Multiplicity="0..1" />
+          <End Role="traderDiamonds" Type="Self.traderDiamonds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diamonds">
+              <PropertyRef Name="diamondId" />
+            </Principal>
+            <Dependent Role="traderDiamonds">
+              <PropertyRef Name="diamondId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_traderDiamonds_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="traderDiamonds" Type="Self.traderDiamonds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="traderDiamonds">
+              <PropertyRef Name="TraderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DiampndsDBModelStoreContainer">
+          <EntitySet Name="cleanLevels" EntityType="Self.cleanLevels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="colors" EntityType="Self.colors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diamonds" EntityType="Self.Diamonds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="diamondStatus" EntityType="Self.diamondStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="priceList" EntityType="Self.priceList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="professionales" EntityType="Self.professionales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shapes" EntityType="Self.shapes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="status" EntityType="Self.status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="traderDiamonds" EntityType="Self.traderDiamonds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Diamonds_cleanLevels" Association="Self.FK_Diamonds_cleanLevels">
+            <End Role="cleanLevels" EntitySet="cleanLevels" />
+            <End Role="Diamonds" EntitySet="Diamonds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diamonds_colors" Association="Self.FK_Diamonds_colors">
+            <End Role="colors" EntitySet="colors" />
+            <End Role="Diamonds" EntitySet="Diamonds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diamonds_shapes" Association="Self.FK_Diamonds_shapes">
+            <End Role="shapes" EntitySet="shapes" />
+            <End Role="Diamonds" EntitySet="Diamonds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_diamondStatus_Diamonds" Association="Self.FK_diamondStatus_Diamonds">
+            <End Role="Diamonds" EntitySet="Diamonds" />
+            <End Role="diamondStatus" EntitySet="diamondStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_diamondStatus_professionales" Association="Self.FK_diamondStatus_professionales">
+            <End Role="professionales" EntitySet="professionales" />
+            <End Role="diamondStatus" EntitySet="diamondStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_diamondStatus_status" Association="Self.FK_diamondStatus_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="diamondStatus" EntitySet="diamondStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_priceList_cleanLevels" Association="Self.FK_priceList_cleanLevels">
+            <End Role="cleanLevels" EntitySet="cleanLevels" />
+            <End Role="priceList" EntitySet="priceList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_priceList_colors" Association="Self.FK_priceList_colors">
+            <End Role="colors" EntitySet="colors" />
+            <End Role="priceList" EntitySet="priceList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_priceList_shapes" Association="Self.FK_priceList_shapes">
+            <End Role="shapes" EntitySet="shapes" />
+            <End Role="priceList" EntitySet="priceList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_professionales_status" Association="Self.FK_professionales_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="professionales" EntitySet="professionales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_traderDiamonds_Diamonds" Association="Self.FK_traderDiamonds_Diamonds">
+            <End Role="Diamonds" EntitySet="Diamonds" />
+            <End Role="traderDiamonds" EntitySet="traderDiamonds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_traderDiamonds_users" Association="Self.FK_traderDiamonds_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="traderDiamonds" EntitySet="traderDiamonds" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DiampndsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cleanLevels">
+          <Key>
+            <PropertyRef Name="levelId" />
+          </Key>
+          <Property Name="levelId" Type="Int32" Nullable="false" />
+          <Property Name="cleanLevel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Diamonds" Relationship="Self.FK_Diamonds_cleanLevels" FromRole="cleanLevels" ToRole="Diamonds" />
+          <NavigationProperty Name="priceList" Relationship="Self.FK_priceList_cleanLevels" FromRole="cleanLevels" ToRole="priceList" />
+        </EntityType>
+        <EntityType Name="colors">
+          <Key>
+            <PropertyRef Name="colorId" />
+          </Key>
+          <Property Name="colorId" Type="Int32" Nullable="false" />
+          <Property Name="color" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Diamonds" Relationship="Self.FK_Diamonds_colors" FromRole="colors" ToRole="Diamonds" />
+          <NavigationProperty Name="priceList" Relationship="Self.FK_priceList_colors" FromRole="colors" ToRole="priceList" />
+        </EntityType>
+        <EntityType Name="Diamonds">
+          <Key>
+            <PropertyRef Name="diamondId" />
+          </Key>
+          <Property Name="diamondId" Type="Int32" Nullable="false" />
+          <Property Name="diamondName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="cleanLevelId" Type="Int32" />
+          <Property Name="colorId" Type="Int32" />
+          <Property Name="shapeId" Type="Int32" />
+          <Property Name="CT" Type="Double" />
+          <NavigationProperty Name="cleanLevels" Relationship="Self.FK_Diamonds_cleanLevels" FromRole="Diamonds" ToRole="cleanLevels" />
+          <NavigationProperty Name="colors" Relationship="Self.FK_Diamonds_colors" FromRole="Diamonds" ToRole="colors" />
+          <NavigationProperty Name="shapes" Relationship="Self.FK_Diamonds_shapes" FromRole="Diamonds" ToRole="shapes" />
+          <NavigationProperty Name="diamondStatus" Relationship="Self.FK_diamondStatus_Diamonds" FromRole="Diamonds" ToRole="diamondStatus" />
+          <NavigationProperty Name="traderDiamonds" Relationship="Self.FK_traderDiamonds_Diamonds" FromRole="Diamonds" ToRole="traderDiamonds" />
+        </EntityType>
+        <EntityType Name="diamondStatus">
+          <Key>
+            <PropertyRef Name="diamondStatusId" />
+          </Key>
+          <Property Name="diamondStatusId" Type="Int32" Nullable="false" />
+          <Property Name="statusId" Type="Int32" />
+          <Property Name="diamondId" Type="Int32" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <Property Name="professionalId" Type="Int32" />
+          <Property Name="price" Type="Double" />
+          <Property Name="CT" Type="Double" />
+          <NavigationProperty Name="Diamonds" Relationship="Self.FK_diamondStatus_Diamonds" FromRole="diamondStatus" ToRole="Diamonds" />
+          <NavigationProperty Name="professionales" Relationship="Self.FK_diamondStatus_professionales" FromRole="diamondStatus" ToRole="professionales" />
+          <NavigationProperty Name="status" Relationship="Self.FK_diamondStatus_status" FromRole="diamondStatus" ToRole="status" />
+        </EntityType>
+        <EntityType Name="priceList">
+          <Key>
+            <PropertyRef Name="pricrId" />
+          </Key>
+          <Property Name="pricrId" Type="Int32" Nullable="false" />
+          <Property Name="cleanLevelId" Type="Int32" />
+          <Property Name="colorId" Type="Int32" />
+          <Property Name="shapeId" Type="Int32" />
+          <Property Name="minCT" Type="Double" />
+          <Property Name="maxCT" Type="Double" />
+          <Property Name="price" Type="Int32" />
+          <NavigationProperty Name="cleanLevels" Relationship="Self.FK_priceList_cleanLevels" FromRole="priceList" ToRole="cleanLevels" />
+          <NavigationProperty Name="colors" Relationship="Self.FK_priceList_colors" FromRole="priceList" ToRole="colors" />
+          <NavigationProperty Name="shapes" Relationship="Self.FK_priceList_shapes" FromRole="priceList" ToRole="shapes" />
+        </EntityType>
+        <EntityType Name="professionales">
+          <Key>
+            <PropertyRef Name="professionalId" />
+          </Key>
+          <Property Name="professionalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="statusId" Type="Int32" />
+          <Property Name="price" Type="Double" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="diamondStatus" Relationship="Self.FK_diamondStatus_professionales" FromRole="professionales" ToRole="diamondStatus" />
+          <NavigationProperty Name="status" Relationship="Self.FK_professionales_status" FromRole="professionales" ToRole="status" />
+        </EntityType>
+        <EntityType Name="shapes">
+          <Key>
+            <PropertyRef Name="shapeId" />
+          </Key>
+          <Property Name="shapeId" Type="Int32" Nullable="false" />
+          <Property Name="shape" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Diamonds" Relationship="Self.FK_Diamonds_shapes" FromRole="shapes" ToRole="Diamonds" />
+          <NavigationProperty Name="priceList" Relationship="Self.FK_priceList_shapes" FromRole="shapes" ToRole="priceList" />
+        </EntityType>
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="statusId" />
+          </Key>
+          <Property Name="statusId" Type="Int32" Nullable="false" />
+          <Property Name="status1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="diamondStatus" Relationship="Self.FK_diamondStatus_status" FromRole="status" ToRole="diamondStatus" />
+          <NavigationProperty Name="professionales" Relationship="Self.FK_professionales_status" FromRole="status" ToRole="professionales" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="traderDiamonds">
+          <Key>
+            <PropertyRef Name="diamondTraderId" />
+          </Key>
+          <Property Name="diamondTraderId" Type="Int32" Nullable="false" />
+          <Property Name="TraderId" Type="Int32" />
+          <Property Name="diamondId" Type="Int32" />
+          <Property Name="shoppingDate" Type="DateTime" Precision="0" />
+          <Property Name="shoppingPrice" Type="Int32" />
+          <NavigationProperty Name="Diamonds" Relationship="Self.FK_traderDiamonds_Diamonds" FromRole="traderDiamonds" ToRole="Diamonds" />
+          <NavigationProperty Name="users" Relationship="Self.FK_traderDiamonds_users" FromRole="traderDiamonds" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="entringName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="traderDiamonds" Relationship="Self.FK_traderDiamonds_users" FromRole="users" ToRole="traderDiamonds" />
+        </EntityType>
+        <Association Name="FK_Diamonds_cleanLevels">
+          <End Role="cleanLevels" Type="Self.cleanLevels" Multiplicity="0..1" />
+          <End Role="Diamonds" Type="Self.Diamonds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cleanLevels">
+              <PropertyRef Name="levelId" />
+            </Principal>
+            <Dependent Role="Diamonds">
+              <PropertyRef Name="cleanLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_priceList_cleanLevels">
+          <End Role="cleanLevels" Type="Self.cleanLevels" Multiplicity="0..1" />
+          <End Role="priceList" Type="Self.priceList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cleanLevels">
+              <PropertyRef Name="levelId" />
+            </Principal>
+            <Dependent Role="priceList">
+              <PropertyRef Name="cleanLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diamonds_colors">
+          <End Role="colors" Type="Self.colors" Multiplicity="0..1" />
+          <End Role="Diamonds" Type="Self.Diamonds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colors">
+              <PropertyRef Name="colorId" />
+            </Principal>
+            <Dependent Role="Diamonds">
+              <PropertyRef Name="colorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_priceList_colors">
+          <End Role="colors" Type="Self.colors" Multiplicity="0..1" />
+          <End Role="priceList" Type="Self.priceList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="colors">
+              <PropertyRef Name="colorId" />
+            </Principal>
+            <Dependent Role="priceList">
+              <PropertyRef Name="colorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diamonds_shapes">
+          <End Role="shapes" Type="Self.shapes" Multiplicity="0..1" />
+          <End Role="Diamonds" Type="Self.Diamonds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shapes">
+              <PropertyRef Name="shapeId" />
+            </Principal>
+            <Dependent Role="Diamonds">
+              <PropertyRef Name="shapeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_diamondStatus_Diamonds">
+          <End Role="Diamonds" Type="Self.Diamonds" Multiplicity="0..1" />
+          <End Role="diamondStatus" Type="Self.diamondStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diamonds">
+              <PropertyRef Name="diamondId" />
+            </Principal>
+            <Dependent Role="diamondStatus">
+              <PropertyRef Name="diamondId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_traderDiamonds_Diamonds">
+          <End Role="Diamonds" Type="Self.Diamonds" Multiplicity="0..1" />
+          <End Role="traderDiamonds" Type="Self.traderDiamonds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diamonds">
+              <PropertyRef Name="diamondId" />
+            </Principal>
+            <Dependent Role="traderDiamonds">
+              <PropertyRef Name="diamondId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_diamondStatus_professionales">
+          <End Role="professionales" Type="Self.professionales" Multiplicity="0..1" />
+          <End Role="diamondStatus" Type="Self.diamondStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="professionales">
+              <PropertyRef Name="professionalId" />
+            </Principal>
+            <Dependent Role="diamondStatus">
+              <PropertyRef Name="professionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_diamondStatus_status">
+          <End Role="status" Type="Self.status" Multiplicity="0..1" />
+          <End Role="diamondStatus" Type="Self.diamondStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="statusId" />
+            </Principal>
+            <Dependent Role="diamondStatus">
+              <PropertyRef Name="statusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_priceList_shapes">
+          <End Role="shapes" Type="Self.shapes" Multiplicity="0..1" />
+          <End Role="priceList" Type="Self.priceList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shapes">
+              <PropertyRef Name="shapeId" />
+            </Principal>
+            <Dependent Role="priceList">
+              <PropertyRef Name="shapeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_professionales_status">
+          <End Role="status" Type="Self.status" Multiplicity="0..1" />
+          <End Role="professionales" Type="Self.professionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="statusId" />
+            </Principal>
+            <Dependent Role="professionales">
+              <PropertyRef Name="statusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_traderDiamonds_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="traderDiamonds" Type="Self.traderDiamonds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="traderDiamonds">
+              <PropertyRef Name="TraderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DiampndsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cleanLevels" EntityType="Self.cleanLevels" />
+          <EntitySet Name="colors" EntityType="Self.colors" />
+          <EntitySet Name="Diamonds" EntityType="Self.Diamonds" />
+          <EntitySet Name="diamondStatus" EntityType="Self.diamondStatus" />
+          <EntitySet Name="priceList" EntityType="Self.priceList" />
+          <EntitySet Name="professionales" EntityType="Self.professionales" />
+          <EntitySet Name="shapes" EntityType="Self.shapes" />
+          <EntitySet Name="status" EntityType="Self.status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="traderDiamonds" EntityType="Self.traderDiamonds" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK_Diamonds_cleanLevels" Association="Self.FK_Diamonds_cleanLevels">
+            <End Role="cleanLevels" EntitySet="cleanLevels" />
+            <End Role="Diamonds" EntitySet="Diamonds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_priceList_cleanLevels" Association="Self.FK_priceList_cleanLevels">
+            <End Role="cleanLevels" EntitySet="cleanLevels" />
+            <End Role="priceList" EntitySet="priceList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diamonds_colors" Association="Self.FK_Diamonds_colors">
+            <End Role="colors" EntitySet="colors" />
+            <End Role="Diamonds" EntitySet="Diamonds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_priceList_colors" Association="Self.FK_priceList_colors">
+            <End Role="colors" EntitySet="colors" />
+            <End Role="priceList" EntitySet="priceList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diamonds_shapes" Association="Self.FK_Diamonds_shapes">
+            <End Role="shapes" EntitySet="shapes" />
+            <End Role="Diamonds" EntitySet="Diamonds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_diamondStatus_Diamonds" Association="Self.FK_diamondStatus_Diamonds">
+            <End Role="Diamonds" EntitySet="Diamonds" />
+            <End Role="diamondStatus" EntitySet="diamondStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_traderDiamonds_Diamonds" Association="Self.FK_traderDiamonds_Diamonds">
+            <End Role="Diamonds" EntitySet="Diamonds" />
+            <End Role="traderDiamonds" EntitySet="traderDiamonds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_diamondStatus_professionales" Association="Self.FK_diamondStatus_professionales">
+            <End Role="professionales" EntitySet="professionales" />
+            <End Role="diamondStatus" EntitySet="diamondStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_diamondStatus_status" Association="Self.FK_diamondStatus_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="diamondStatus" EntitySet="diamondStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_priceList_shapes" Association="Self.FK_priceList_shapes">
+            <End Role="shapes" EntitySet="shapes" />
+            <End Role="priceList" EntitySet="priceList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_professionales_status" Association="Self.FK_professionales_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="professionales" EntitySet="professionales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_traderDiamonds_users" Association="Self.FK_traderDiamonds_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="traderDiamonds" EntitySet="traderDiamonds" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DiampndsDBModelStoreContainer" CdmEntityContainer="DiampndsDBEntities">
+          <EntitySetMapping Name="cleanLevels">
+            <EntityTypeMapping TypeName="DiampndsDBModel.cleanLevels">
+              <MappingFragment StoreEntitySet="cleanLevels">
+                <ScalarProperty Name="levelId" ColumnName="levelId" />
+                <ScalarProperty Name="cleanLevel" ColumnName="cleanLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="colors">
+            <EntityTypeMapping TypeName="DiampndsDBModel.colors">
+              <MappingFragment StoreEntitySet="colors">
+                <ScalarProperty Name="colorId" ColumnName="colorId" />
+                <ScalarProperty Name="color" ColumnName="color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diamonds">
+            <EntityTypeMapping TypeName="DiampndsDBModel.Diamonds">
+              <MappingFragment StoreEntitySet="Diamonds">
+                <ScalarProperty Name="diamondId" ColumnName="diamondId" />
+                <ScalarProperty Name="diamondName" ColumnName="diamondName" />
+                <ScalarProperty Name="cleanLevelId" ColumnName="cleanLevelId" />
+                <ScalarProperty Name="colorId" ColumnName="colorId" />
+                <ScalarProperty Name="shapeId" ColumnName="shapeId" />
+                <ScalarProperty Name="CT" ColumnName="CT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="diamondStatus">
+            <EntityTypeMapping TypeName="DiampndsDBModel.diamondStatus">
+              <MappingFragment StoreEntitySet="diamondStatus">
+                <ScalarProperty Name="diamondStatusId" ColumnName="diamondStatusId" />
+                <ScalarProperty Name="statusId" ColumnName="statusId" />
+                <ScalarProperty Name="diamondId" ColumnName="diamondId" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="professionalId" ColumnName="professionalId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="CT" ColumnName="CT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="priceList">
+            <EntityTypeMapping TypeName="DiampndsDBModel.priceList">
+              <MappingFragment StoreEntitySet="priceList">
+                <ScalarProperty Name="pricrId" ColumnName="pricrId" />
+                <ScalarProperty Name="cleanLevelId" ColumnName="cleanLevelId" />
+                <ScalarProperty Name="colorId" ColumnName="colorId" />
+                <ScalarProperty Name="shapeId" ColumnName="shapeId" />
+                <ScalarProperty Name="minCT" ColumnName="minCT" />
+                <ScalarProperty Name="maxCT" ColumnName="maxCT" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="professionales">
+            <EntityTypeMapping TypeName="DiampndsDBModel.professionales">
+              <MappingFragment StoreEntitySet="professionales">
+                <ScalarProperty Name="professionalId" ColumnName="professionalId" />
+                <ScalarProperty Name="statusId" ColumnName="statusId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shapes">
+            <EntityTypeMapping TypeName="DiampndsDBModel.shapes">
+              <MappingFragment StoreEntitySet="shapes">
+                <ScalarProperty Name="shapeId" ColumnName="shapeId" />
+                <ScalarProperty Name="shape" ColumnName="shape" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="status">
+            <EntityTypeMapping TypeName="DiampndsDBModel.status">
+              <MappingFragment StoreEntitySet="status">
+                <ScalarProperty Name="statusId" ColumnName="statusId" />
+                <ScalarProperty Name="status1" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DiampndsDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="traderDiamonds">
+            <EntityTypeMapping TypeName="DiampndsDBModel.traderDiamonds">
+              <MappingFragment StoreEntitySet="traderDiamonds">
+                <ScalarProperty Name="diamondTraderId" ColumnName="diamondTraderId" />
+                <ScalarProperty Name="TraderId" ColumnName="TraderId" />
+                <ScalarProperty Name="diamondId" ColumnName="diamondId" />
+                <ScalarProperty Name="shoppingDate" ColumnName="shoppingDate" />
+                <ScalarProperty Name="shoppingPrice" ColumnName="shoppingPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="DiampndsDBModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="entringName" ColumnName="entringName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

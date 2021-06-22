@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8472edb64723471f99a3ea2fe598269a" Name="Diagram1">
+        <EntityTypeShape EntityType="DiampndsDBModel.cleanLevels" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiampndsDBModel.colors" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiampndsDBModel.Diamonds" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiampndsDBModel.diamondStatus" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiampndsDBModel.priceList" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiampndsDBModel.professionales" Width="1.5" PointX="6" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiampndsDBModel.shapes" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiampndsDBModel.status" Width="1.5" PointX="3.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiampndsDBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiampndsDBModel.traderDiamonds" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiampndsDBModel.users" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="DiampndsDBModel.FK_Diamonds_cleanLevels" ManuallyRouted="false" />
+        <AssociationConnector Association="DiampndsDBModel.FK_priceList_cleanLevels" ManuallyRouted="false" />
+        <AssociationConnector Association="DiampndsDBModel.FK_Diamonds_colors" ManuallyRouted="false" />
+        <AssociationConnector Association="DiampndsDBModel.FK_priceList_colors" ManuallyRouted="false" />
+        <AssociationConnector Association="DiampndsDBModel.FK_Diamonds_shapes" ManuallyRouted="false" />
+        <AssociationConnector Association="DiampndsDBModel.FK_diamondStatus_Diamonds" ManuallyRouted="false" />
+        <AssociationConnector Association="DiampndsDBModel.FK_traderDiamonds_Diamonds" ManuallyRouted="false" />
+        <AssociationConnector Association="DiampndsDBModel.FK_diamondStatus_professionales" ManuallyRouted="false" />
+        <AssociationConnector Association="DiampndsDBModel.FK_diamondStatus_status" ManuallyRouted="false" />
+        <AssociationConnector Association="DiampndsDBModel.FK_priceList_shapes" ManuallyRouted="false" />
+        <AssociationConnector Association="DiampndsDBModel.FK_professionales_status" ManuallyRouted="false" />
+        <AssociationConnector Association="DiampndsDBModel.FK_traderDiamonds_users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
