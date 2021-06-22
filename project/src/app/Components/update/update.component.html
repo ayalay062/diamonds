@@ -1,0 +1,35 @@
+<span>{{header}}</span>
+<br>
+<br>
+<br>
+<span>שם יהלום: </span>
+<input  type="text" style="width:10%">
+ <!-- [(ngModel)]="content.diamondName"  -->
+<br>
+<br>
+<span>רמת נקיון: {{content.cleanLevelName}}</span>
+<mat-select class="sizeLevelClass"  matInput placeholder=""(click)="onFlag()">
+    <div *ngIf="flag">
+    <mat-option name="hhh" *ngFor="let level of cleanList" [value]="level" >
+        {{level.CleanLevel}}
+    </mat-option>
+</div>
+</mat-select>
+<br>
+<br>
+<span>צורה: {{content.shapeName}}</span>
+<mat-select  class="sizeShapeClass" matInput placeholder=""(click)="getShapeList()">
+    <mat-option name="hhy" *ngFor="let shape of shapeList"[value]="shape.shape" >
+        {{shape.shape}}</mat-option>
+</mat-select>
+<br>
+<br>
+<span>קראט: </span>
+<input type="text" style="width:13%">
+<br>
+<br>
+<br>
+<button mat-raised-button class="b" (click)="updateConfirm()">אישור</button>
+
+
+
