@@ -1,39 +1,38 @@
-.title
-{
-  background-color:rgb(223, 222, 222) ;
-  text-align:center;
-  color: rgb(36, 238, 238) ;
-}
-table
-{
-  width: 100%
+.title {
+    background-color: rgb(223, 222, 222);
+    text-align: center;
+    color: #18bebe;
 }
 
-.nav
- {  
-   float: left;
-   /* background-color: blueviolet; */
-   color:black; 
-   height: 600px; 
-   width:  20% ;  
-   text-align:center; 
-    display: flex;
-    flex-direction: column;
-  }
-.article
-  { 
+table {
+    width: 100%
+}
+
+.nav {
+    padding: 10px;
+    float: left;
+    /* background-color: blueviolet; */
+    color: black;
+    width: 20%;
+    text-align: center;
+    vertical-align: top;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.article {
     /* background-color: chartreuse; */
     float: right;
-    height: 600px; 
-    width:  80% ;
-    color:rgb(36, 238, 238) ; 
-  } 
-.footer
-{
-  /* background-color: crimson; */
-  float: right;
-  height: 150px; 
-  width:  100%;
-  text-align:center; 
-  color:rgb(36, 238, 238) ; 
+    width: 70%;
+    color: #18bebe;
+    vertical-align: top;
+}
+
+.footer {
+    /* background-color: crimson; */
+    float: right;
+    height: 150px;
+    width: 100%;
+    text-align: center;
+    color: #18bebe;
 }

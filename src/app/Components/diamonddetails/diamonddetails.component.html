@@ -1,0 +1,39 @@
+<div align="center">
+    <h1 mat-dialog-title>{{header}}</h1>
+</div>
+<span>שם היהלום:</span>
+<span>{{diamond.diamondName}}</span>
+<br>
+<span>הסטטוס שסים:</span>
+<span>{{diamond.statusName}}</span>
+<br>
+<span>תאריך התחלתי:</span>
+<span>{{diamond.startDate}}</span>
+<br>
+<span>תאריך סיום:</span>
+<span>{{diamond.endDate}}</span>
+<br>
+<span>שם בעל המקצוע:</span>
+<span>{{diamond.professionalName}}</span>
+<br>
+<span>מחיר:</span>
+<span>{{diamond.price}}</span>
+<br>
+<div mat-dialog-actions class="list justify-content-center" align="center">
+    <button>הסטטוס הבא: </button>
+    <div class="list" *ngFor="let status of statusList">
+        <button (click)="getProfessionalOfStatus(status.statusName)">{{status.statusName}} </button>
+        <div *ngIf="current==status.statusName">
+            <button *ngFor="let professional of professionalList">{{professional.professionalName}}
+            </button>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</div>    <button mat-stroked-button class="check-btn" color="primary" [mat-dialog-close]="true" (click)="updateDiamond(diamond)">אישור</button>
+<!-- <mat-select item-width="5px" matInput placeholder="סטטוס הבא:">
+        <mat-option *ngFor="let status of statusList" [value]="status.status1">{{status.status1}}</mat-option>
+    </mat-select> -->

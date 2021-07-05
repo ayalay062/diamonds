@@ -1,74 +1,144 @@
-
-<mat-card-title>
-   <span> סוחר חדש</span>
-</mat-card-title>
-<mat-card>
-<mat-card-content>
-    <form [formGroup]="formTrader" (ngSubmit)="onSubmit()">
-        <table>
-            <tr>
+<form class="form-wrapper form-wrapper-big" [formGroup]="formTrader" (ngSubmit)="onSubmit()">
+    <br />
+    <h1>סוחר חדש</h1>
+    <table style="direction: rtl; width: 100%">
+        <tr>
+            <mat-form-field class="demo-full-width">
+                <input formControlName="EntringName" matInput placeholder="שם משתמש" />
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="!formTrader.get('EntringName').valid">
+          חובה להזין שם משתמש
+        </span>
+            </mat-error>
+        </tr>
+        <tr>
+            <td>
                 <mat-form-field class="demo-full-width">
-                    <input formControlName="EntringName" matInput placeholder="שם כניסה" >
+                    <input type="password" formControlName="Password" matInput placeholder="סיסמא" minlength="6" />
                 </mat-form-field>
                 <mat-error>
-                    <span *ngIf="!formTrader.get('EntringName').valid"> !הכנס שם כניסה </span>
-                </mat-error>
-            </tr>
-            <tr>
-                <mat-form-field class="demo-full-width">
-                    <input type="password" formControlName="passwordAuthentication" matInput placeholder="אימות סיסמא">
-                </mat-form-field>
-                <mat-error>
-                    <span *ngIf="formTrader.get('passwordAuthentication').valid != formTrader.get('Password').valid && formTrader.get('passwordAuthentication').touched">
-                        !הסיסמא שגויה</span>
-                </mat-error>
-                <td>
-                    <mat-form-field class="demo-full-width">
-                        <input type="password" formControlName="Password" matInput placeholder="סיסמא" >
-                    </mat-form-field>
-                    <mat-error>
-                        <span *ngIf="!formTrader.get('Password').valid">!!הקש סיסמא</span>
-                    </mat-error>
-                </td>
-            </tr>
-            <tr>
-                <mat-form-field class="demo-full-width">
-                    <input formControlName="LastName" matInput placeholder=":שם משפחה">
-                </mat-form-field>
-                <mat-error>
-                    <span *ngIf="!formTrader.get('LastName').valid && formTrader.get('LastName').touched">!הכנס שם משפחה</span>
-                </mat-error>
-                <td>
-                    <mat-form-field class="demo-full-width">
-                        <input formControlName="FirstName" matInput placeholder=":שם פרטי">
-                    </mat-form-field>
-                    <mat-error>
-                        <span *ngIf="!formTrader.get('FirstName').valid && formTrader.get('FirstName').touched">!הכנס שם פרטי</span>
-                    </mat-error>
-                </td>
-
-                <tr>
-                    <mat-form-field class="demo-full-width">
-                        <input formControlName="Mail" matInput placeholder="E-mail">
-                    </mat-form-field>
-                    <mat-error>
-                        <span *ngIf="!formTrader.get('Mail').valid && formTrader.get('Mail').touched">:הכנס כתובת מייל</span>
-                    </mat-error>
-                    <td>
-                        <mat-form-field class="demo-full-width">
-                            <input formControlName="Mobile" matInput placeholder=":נייד">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!formTrader.get('Mobile').valid && formTrader.get('Mobile').touched">:הכנס מספר נייד</span>
-                        </mat-error>
-                    </td>
-                </tr>
-                <tr>
-                    <td  class="content-center">
-                        <button type="submit" mat-raised-button color="primary"  [disabled]="!formTrader.valid">אישור</button>
-                    </td>
-                </tr>
-        </table>
-    </form>
-</mat-card-content>
-</mat-card>
+                    <span *ngIf="formTrader.get('Password').hasError('required')" style="font-size: 12px">
+            חובה להזין סיסמא</span
+          >
+          <span
+            *ngIf="formTrader.get('Password').hasError('minlength')"
+            style="font-size: 12px"
+          >
+            חובה להזין מינימום 6 תווים</span
+          >
+        </mat-error>
+      </td>
+      <td>
+        <mat-form-field class="demo-full-width">
+          <input
+            type="password"
+            formControlName="passwordAuthentication"
+            matInput
+            placeholder="אימות סיסמא"
+          />
+        </mat-form-field>
+        <mat-error>
+          <span
+            *ngIf="
+              (formTrader.get('passwordAuthentication').touched ||
+                formTrader.get('Password').touched) &&
+              formTrader.get('passwordAuthentication').value !=
+                formTrader.get('Password').value
+            "
+          >
+            הסיסמא לא תואמת</span
+          >
+        </mat-error>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="demo-full-width">
+          <input formControlName="LastName" matInput placeholder="שם משפחה" />
+        </mat-form-field>
+        <mat-error>
+          <span
+            *ngIf="
+              !formTrader.get('LastName').valid &&
+              formTrader.get('LastName').touched
+            "
+            style="font-size: 12px"
+          >
+            חובה להזין שם משפחה</span
+          >
+          <span
+            *ngIf="formTrader.get('LastName').hasError('minlength')"
+            style="font-size: 12px"
+          >
+            חובה להזין מינימום 2 תווים</span
+          >
+        </mat-error>
+      </td>
+      <td>
+        <mat-form-field class="demo-full-width">
+          <input formControlName="FirstName" matInput placeholder="שם פרטי" />
+        </mat-form-field>
+        <mat-error>
+          <span
+            *ngIf="
+              !formTrader.get('FirstName').valid &&
+              formTrader.get('FirstName').touched
+            "
+            >חובה להזין שם פרטי</span
+          >
+        </mat-error>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="demo-full-width">
+          <input formControlName="Mobile" matInput placeholder="נייד" />
+        </mat-form-field>
+        <mat-error>
+          <span
+            *ngIf="
+              !formTrader.get('Mobile').valid &&
+              formTrader.get('Mobile').touched
+            "
+            style="font-size: 12px"
+          >
+            חובה להזין נייד
+          </span>
+                    <span *ngIf="formTrader.get('Mobile').hasError('minlength')" style="font-size: 12px">
+            חובה להזין מינימום 10 תווים</span
+          >
+        </mat-error>
+      </td>
+      <td>
+        <mat-form-field class="demo-full-width">
+          <input formControlName="Mail" matInput placeholder="אימייל" />
+        </mat-form-field>
+        <mat-error>
+          <span
+            *ngIf="
+              !formTrader.get('Mail').valid && formTrader.get('Mail').touched
+            "
+            style="font-size: 12px"
+          >
+            חובה להזין אימייל
+          </span>
+                    <span *ngIf="formTrader.get('Mail').hasError('email')" style="font-size: 12px">כתובת מייל לא תקינה</span
+          >
+        </mat-error>
+      </td>
+    </tr>
+    <tr>
+      <td class="content-center" colspan="2">
+        <button
+          type="submit"
+          mat-raised-button
+          class="btn-color"
+          [disabled]="!formTrader.valid"
+        >
+          אישור
+        </button>
+      </td>
+    </tr>
+  </table>
+</form>

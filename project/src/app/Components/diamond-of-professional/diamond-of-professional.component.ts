@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProfessianolService } from '../../servies/professianol.service';
 import { ProfessionalDiamonds } from '../../Classes/professional-diamonds';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-diamond-of-professional',
@@ -23,8 +24,8 @@ export class DiamondOfProfessionalComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.name = params["name"]
-      this.password = params["password"]
+      this.name = localStorage.getItem("name")
+      this.password = localStorage.getItem("password")
       this.getProfessionalDitails(this.name, this.password);
     });
   }
@@ -35,7 +36,8 @@ export class DiamondOfProfessionalComponent implements OnInit {
       this.dataSource = new MatTableDataSource<ProfessionalDiamonds>(this.DiamondsList)
     },
       err => {
-        alert(err.Message);
+        Swal.fire("Ooops",err.Message, "error");
+
       });
   }
 
@@ -43,12 +45,14 @@ export class DiamondOfProfessionalComponent implements OnInit {
     this.pSer.updateFinishStatus(element, this.endCT).subscribe(data => {
       this.answer = data;
       if (this.answer == true)
-        alert("! העידכון נשמר");
+
+        Swal.fire("","השמירה בוצעה בהצלחה", "success");
       else
-        alert("): העידכון נכשל");
+
+        Swal.fire("Ooops","): העידכון נכשל", "error");
     },
       err => {
-        alert(err.Message);
+        Swal.fire("Ooops",err.Message, "error");
       });
   }
 

@@ -19,18 +19,28 @@ namespace nDiamonds.Controllers
             return Ok(UI.traderDiamondsUI.getListDiamondsOfTrader(name,password));
         }
 
-        [Route("getCleanList")]
+        [Route ("getCleanList")]
         [HttpGet]
         public IHttpActionResult getCleanList()
         {
             return Ok(UI.cleanLevelUI.getCleanList());
         }
+
+
         // GET: api/traderDiamonds/5
-        public string Get(int id)
+        [Route("getShapeList")]
+        [HttpGet]
+        public IHttpActionResult getShapeList()
         {
-            return "value";
+            return Ok(UI.shapesUI.getShapeList());
         }
 
+        [Route("getColorList")]
+        [HttpGet]
+        public IHttpActionResult getColorList()
+        {
+            return Ok(UI.colorsUI.getColorList());
+        }
         // POST: api/traderDiamonds
         [Route("updatDiamondToTheNextStatus")]
         [HttpPost]
@@ -43,15 +53,11 @@ namespace nDiamonds.Controllers
 
 
         // POST: api/traderDiamonds
-        [Route("addNewDiamond/{traderId}")]
+        [Route("addNewDiamond/{name}/{password}/{price}")]
         [HttpPost]
-        public bool addNewDiamond(int rtaderId,[FromBody] DiamondsDTO d)
+        public IHttpActionResult addNewDiamond(string name,string password,int price,[FromBody] DiamondsDTO d)
         {
-            int a = UI.traderDiamondsUI.addNewDiamond(rtaderId,d);
-            if (a >= 1)
-                return true;
-            else
-                return false;
+            return Ok(UI.traderDiamondsUI.addNewDiamond(name, password, price, d));
         }
 
         // PUT: api/traderDiamonds/5

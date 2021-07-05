@@ -1,0 +1,39 @@
+<span>{{header}}</span>
+<br>
+<br>
+<br>
+<span>שם יהלום: </span>
+<input matInput type="text" style="width:10%" [(ngModel)]="content.diamondName">
+<!-- <mat-form-field class="demo-full-width">  
+    <input formControlName="FirstName" matInput placeholder="First Name">
+</mat-form-field>   -->
+ 
+<br>
+<br>
+<span>רמת נקיון: {{content.cleanLevelName}}</span>
+<mat-select class="sizeLevelClass"  matInput placeholder=""(click)="getCleanList()">
+    <mat-option *ngFor="let level of cleanList" [value]="level.CleanLevel" [(ngModel)]="updateDiamond.cleanLevelName" >{{level.CleanLevel}}</mat-option>
+</mat-select>
+<br>
+<br>
+<span>צבע: {{content.colorName}}</span>
+<mat-select  class="sizeShapeClass" matInput placeholder=""(click)="getColorList()">
+    <mat-option *ngFor="let color of colorList"[value]="color.Color"  [(ngModel)]="updateDiamond.colorName">{{color.Color}}</mat-option>
+</mat-select>
+<br><br>
+<span>צורה: {{content.shapeName}}</span>
+<mat-select  class="sizeShapeClass" matInput placeholder=""(click)="getShapeList()">
+    <mat-option *ngFor="let shape of shapeList"[value]="shape.shape"  [(ngModel)]="updateDiamond.shapeName">{{shape.shape}}</mat-option>
+</mat-select>
+<br>
+<br>
+<span>קראט: </span>
+<input type="text" style="width:13%" [(ngModel)]="updateDiamond.CT">
+<br>
+<br>
+
+<br>
+<button mat-raised-button class="b" (click)="updateConfirm()">אישור</button>
+
+
+

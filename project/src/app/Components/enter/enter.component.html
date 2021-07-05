@@ -1,36 +1,44 @@
+<form class="form-wrapper" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <br>
+    <h1>
+        התחברות
+    </h1>
+    <br>
+    <div>
+        <div>
+            <mat-form-field class="demo-full-width">
+                <input type="text" formControlName="name" matInput placeholder="שם:" required minlength="2">
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="form.get('name').hasError('required')" style="font-size: 12px;"> חובה להזין שם</span>
+                <span *ngIf="form.get('name').hasError('minlength')" style="font-size: 12px;"> חובה להזין מינימום 2 תווים</span>
 
-<mat-card>
-<mat-card-content>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <table>
-            <tr>
-                <mat-form-field class="demo-full-width">
-                    <input formControlName="name" matInput placeholder="שם:">
-                </mat-form-field>
-                <mat-error>
-                    <span *ngIf="!form.get('name').valid && form.get('name').touched">!!!הכנס שם</span> 
-                    <!-- <span *ngIf="form.get('name')"></span> -->
-                </mat-error>
-            </tr>
-            <tr>
-                <mat-form-field class="demo-full-width">
-                    <input type="password" formControlName="password" matInput placeholder="סיסמא:">
-                </mat-form-field>
-                <mat-error>
-                    <span *ngIf="!form.get('password').valid && form.get('password').touched">!!!הקש סיסמא </span>
-                </mat-error>
-            </tr>
-            <tr>
-                <mat-form-field>
-                    <mat-select formControlName="new" placeholder="חדש">
-                        <mat-option *ngFor="let ToP of selectTop" [value]="ToP">{{ToP}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </tr>
-            <tr >
-                <button type="submit" class="title content-center" color="primary"  [disabled]="!form.valid">אישור</button>
-            </tr>
-        </table>
-    </form>
-</mat-card-content>
-</mat-card>
+
+
+                <!-- <span *ngIf="form.get('name')"></span> -->
+            </mat-error>
+        </div>
+        <div>
+            <mat-form-field class="demo-full-width">
+                <input type="password" formControlName="password" required minlength="6" maxlength="10" matInput placeholder="סיסמא:">
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="form.get('password').hasError('required')" style="font-size: 12px;"> חובה להזין סיסמא</span>
+                <span *ngIf="form.get('password').hasError('minlength')" style="font-size: 12px;"> חובה להזין מינימום 6 תווים</span>
+                <span *ngIf="form.get('password').hasError('maxlength')" style="font-size: 12px;"> חובה להזין מקסימום 10 תווים</span>
+
+            </mat-error>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-select formControlName="new" placeholder="חדש">
+                    <mat-option *ngFor="let ToP of selectTop" [value]="ToP">{{ToP}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <br>
+        <div>
+            <button type="submit" class="content-center btn-color" [disabled]="!form.valid">אישור</button>
+        </div>
+    </div>
+</form>

@@ -4,22 +4,21 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using UI;
-using DTO;
 
-namespace nDiamonds.Controllers
+namespace Diamonds.Controllers
 {
     [RoutePrefix("api/status")]
     public class statusController : ApiController
     {
-
-        // GET: api/status
-        [Route("GetStatus")]
-        [HttpGet]
-        public IHttpActionResult GetStatus()
+        // GET: api/proffesionalDiamonds
+        [Route("getStatus")]
+        public IHttpActionResult getStatus()
         {
             return Ok(UI.statusUI.getStatusList());
         }
+
+
+       
 
         // GET: api/status/5
         public string Get(int id)

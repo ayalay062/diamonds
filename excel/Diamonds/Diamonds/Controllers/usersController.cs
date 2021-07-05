@@ -4,44 +4,85 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using UI;
 using DTO;
+using UI;
 
-namespace Diamonds.Controllers
+namespace nDiamonds.Controllers
 {
     [RoutePrefix("api/users")]
     public class usersController : ApiController
     {
-        // GET: api/users
-        [Route("getUsers")]
-        public IHttpActionResult getUsers()
+        //// GET: api/users
+        //DiampndsDBEntities d = new DiampndsDBEntities();
+        //[Route("Get")]
+        //public IHttpActionResult Get()
+        //{
+        //    return Ok(StatusDTO.convertToListDTO(d.status.ToList()));
+        //}
+
+
+        [Route("ifExsistEnterNameAndPassword/{enterName}/{password}")]
+        [HttpGet]
+        public IHttpActionResult ifExsistEnterNameAndPassword(string enterName, string password)
         {
-            return Ok();
+            return Ok(UI.usersUI.exsistNameAndPassword(enterName, password));
         }
 
-        // GET: api/users/5
-        [Route("ifExsistEnterNameAndPassword/{enterName}/{password}")]
-        public IHttpActionResult ifExsistEnterNameAndPassword(string enterName,string password)
+        [HttpGet]
+        [Route("singularPassword/{password}")]
+        public IHttpActionResult singularPassword(string password)
         {
-            return Ok(UI.usersUI.exsistNameAndPassword(enterName,password));
+            return Ok(UI.usersUI.singularPassword(password));
+        }
+        //[Route("readExcel")]
+        //[HttpGet]
+        //public IHttpActionResult readExcel()
+        //{
+        //    readFromExcel.readFromExcel1();
+        //    return Ok();
+        //}
+        // GET: api/users/5
+        public string Get(int id)
+        {
+            return "value";
         }
 
         // POST: api/users
-        [Route ("addNewProfessional/{}")]
-        public void addNewProfessional([FromBody]UsersDTO u,[FromBody]ProfessionalesDTO p)
+        public void Post([FromBody]string value)
         {
-            UI.usersUI.addProfessional(u,p);
+
         }
 
-        [Route ("addNewTrader")]
-        public void addNewTrader([FromBody]UsersDTO u)
+        [Route("addNewTrader")]
+        [HttpPost]
+        public bool addNewTrader([FromBody]UsersDTO u)
         {
-          UI.usersUI.addTrader(u);
+           int a= UI.usersUI.addTrader(u);
+            if (a == 1)
+                return true;
+            else
+                return false;
         }
+
+       
+        [Route("addNewProfessional/{status}/{price}")]
+        [HttpPost]
+        public bool addNewProfessional(string status, float price, [FromBody]UsersDTO u)
+        {
+           int a= UI.usersUI.addProfessional(status, price, u);
+            if (a == 1)
+                return true;
+            else
+                return false;
+
+            
+        }
+
         // PUT: api/users/5
         public void Put(int id, [FromBody]string value)
         {
         }
+
         // DELETE: api/users/5
         public void Delete(int id)
         {

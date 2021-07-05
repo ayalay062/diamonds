@@ -1,1 +1,68 @@
-<p>add-new-diammond works!</p>
+<div class="form-wrapper">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h1>הוספת יהלום</h1>
+
+        <mat-form-field>
+            <input type="text" matInput formControlName="diamondName" placeholder="שם היהלום :"> </mat-form-field>
+        <mat-error>
+            <span *ngIf="!form.get('diamondName').valid && form.get('diamondName').touched">חובה להזין  שם</span>
+        </mat-error>
+
+        <mat-form-field>
+            <mat-select matInput formControlName="cleanLevelName" placeholder="רמת נקיון:">
+                <mat-option *ngFor="let level of selectCleanLevel" [value]="level">{{level.CleanLevel}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-error>
+            <span *ngIf="!form.get('cleanLevelName') .valid && form.get('cleanLevelName').touched">חובה להזין  רמת ניקיון</span>
+        </mat-error>
+
+        <mat-form-field>
+            <mat-select matInput formControlName="colorName" placeholder="צבע :">
+                <mat-option *ngFor="let color of selectColor" [value]="color">{{color.Color}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-error>
+            <span *ngIf="!form.get('colorName').valid && form.get('colorName').touched">חובה להזין  צבע</span>
+        </mat-error>
+
+        <mat-form-field>
+            <mat-select matInput formControlName="shapeName" placeholder="צורה :">
+                <mat-option *ngFor="let shape of selectShape" [value]="shape">{{shape.shape}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-error>
+            <span *ngIf="!form.get('shapeName').valid && form.get('shapeName').touched">חובה להזין  צורה</span>
+        </mat-error>
+
+        <mat-form-field>
+            <input type="number" formControlName="CT" matInput placeholder="קראט:">
+        </mat-form-field>
+        <mat-error>
+            <span *ngIf="!form.get('CT').valid && form.get('CT').touched">חובה להזין  קראט</span>
+        </mat-error>
+
+        <mat-form-field>
+            <input type="number" formControlName="price" matInput placeholder="מחיר:">
+        </mat-form-field>
+        <mat-error>
+            <span *ngIf="!form.get('price').valid && form.get('price').touched">חובה להזין  מחיר</span>
+        </mat-error>
+
+        <button type="submit" class="btn-color" [disabled]="!form.valid">אישור</button>
+    </form>
+</div>
+
+<!-- 
+<br><br>
+<br><br>
+
+<input type="text" [(ngModel)]="newDiamond.colorName">
+<br><br>
+<input type="text" [(ngModel)]="newDiamond.CT">
+<br><br>
+<input type="text" [(ngModel)]="newDiamond.shapeName">
+<br><br>
+<input type="text" [(ngModel)]="price">
+<br><br>
+<input type="button" value="אישור" onclick="addNewDiamond(price,newDiamond)"> -->

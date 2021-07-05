@@ -1,0 +1,11 @@
+<span>{{header}}</span>
+<br>
+<br>
+<br>
+<span>{{content}}</span>
+<br>
+<br>
+<br>
+<button mat-stroked-button class="check-btn" color="primary" *ngIf=confirmUp [mat-dialog-close]="true" (click)="saveChanges()">אישור</button>
+<button mat-stroked-button class="check-btn" color="primary" *ngIf=confirmUp [mat-dialog-close]="false" >ביטול</button>
+

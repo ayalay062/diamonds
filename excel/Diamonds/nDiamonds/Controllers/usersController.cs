@@ -34,13 +34,13 @@ namespace nDiamonds.Controllers
         {
             return Ok(UI.usersUI.singularPassword(password));
         }
-        [Route("readExcel")]
-        [HttpGet]
-        public IHttpActionResult readExcel()
-        {
-            readFromExcel.readFromExcel1();
-            return Ok();
-        }
+        //[Route("readExcel")]
+        //[HttpGet]
+        //public IHttpActionResult readExcel()
+        //{
+        //    readFromExcel.readFromExcel1();
+        //    return Ok();
+        //}
         // GET: api/users/5
         public string Get(int id)
         {

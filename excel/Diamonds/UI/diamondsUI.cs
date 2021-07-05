@@ -35,5 +35,16 @@ namespace UI
             return ld;
         }
 
+        public static int addNewDiamond(DiamondsDTO ND)
+        {
+            //ND.shapeId = ND.shapeId;
+            //ND.colorId = UI.colorsUI.getColorIdByName(ND.colorName);
+            //ND.cleanLevelId = UI.cleanLevelUI.getCleanLevelIdByName(ND.cleanLevelName);
+            Diamonds nd = DiamondsDTO.convertToDB(ND);
+            db.Diamonds.Add(nd);
+            int a = db.SaveChanges();
+            return a;
+        }
+
     }
 }

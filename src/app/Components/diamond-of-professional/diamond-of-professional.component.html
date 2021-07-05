@@ -1,0 +1,38 @@
+<!-- <mat-toolbar class="title">
+    <span>מסחר ביהלומים</span>
+</mat-toolbar> -->
+<header></header>
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" display="flex">
+    <ng-container matColumnDef="traderName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>שם סוחר:</th>
+        <td mat-cell *matCellDef="let element">{{element.traderFName}} {{element.traderLName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="diamondName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>שם יהלום:</th>
+        <td mat-cell *matCellDef="let element">{{element.diamondName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>תאריך התחלה:</th>
+        <td mat-cell *matCellDef="let element">{{element.startDate}}</td>
+    </ng-container>
+    <ng-container matColumnDef="startCT">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>קראט התחלתי:</th>
+        <td mat-cell *matCellDef="let element">{{element.startCT}}</td>
+    </ng-container>
+    <ng-container matColumnDef="endCT">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>קראט סיום:</th>
+        <td mat-cell *matCellDef="let element">
+            <input type="text" [(ngModel)]="endCT">
+        </td>
+
+    </ng-container>
+    <ng-container matColumnDef="end">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let element">
+            <button color="primary" mat-raised-button (click)="endStatus(element)">סיום</button>
+        </td>
+
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

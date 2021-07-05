@@ -13,11 +13,11 @@ import { DeleteComponent } from './Components/delete/delete.component';
 
 const routes: Routes = [
   { path: "", component: EnterComponent },
-  { path: "new-trader/:name/:password", component: NewtraderComponent },
+  { path: "new-trader", component: NewtraderComponent },
   { path: "diamond-details", component: DiamonddetailsComponent },
-  { path: "diamonds-of-trader/:name/:password", component: DiamondsoftraderComponent },
-  { path: "n-professional/:name/:password", component: NProfessionalComponent },
-  { path: "diamond-of-professional/:name/:password", component:DiamondOfProfessionalComponent},
+  { path: "diamonds-of-trader", component: DiamondsoftraderComponent },
+  { path: "n-professional", component: NProfessionalComponent },
+  { path: "diamond-of-professional", component:DiamondOfProfessionalComponent},
   { path: "add-new-diammond", component: AddNewDiammondComponent},
   { path:"delete-dialog", component:DeleteComponent}
 

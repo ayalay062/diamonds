@@ -43,9 +43,10 @@ import { AddNewDiammondComponent } from './Components/add-new-diammond/add-new-d
 import { DeleteComponent } from './Components/delete/delete.component';
 import { UpdateComponent } from './Components/update/update.component';
 import { UpdateConfirmComponent } from './Components/update-confirm/update-confirm.component';
+import { ConfirmNewDiamondComponent } from './Components/confirm-new-diamond/confirm-new-diamond.component';
 
 @NgModule({
-   entryComponents:[DiamonddetailsComponent, DeleteComponent,UpdateComponent,UpdateConfirmComponent],
+   entryComponents:[DiamonddetailsComponent, DeleteComponent,UpdateComponent,UpdateConfirmComponent,ConfirmNewDiamondComponent],
    declarations: [
     AppComponent,
     MyFormComponent,
@@ -65,6 +66,7 @@ import { UpdateConfirmComponent } from './Components/update-confirm/update-confi
     DeleteComponent,
     UpdateComponent,
     UpdateConfirmComponent,
+    ConfirmNewDiamondComponent
   ],
   imports: [
     BrowserModule,

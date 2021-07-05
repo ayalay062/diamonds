@@ -13,8 +13,14 @@ namespace UI
         static DiampndsDBEntities db = new DiampndsDBEntities();
         public static List<CleanLevelDTo> getCleanList()
         {
-            List<CleanLevelDTo> cleanLevelListDto =CleanLevelDTo.convertToListDTO(db.cleanLevels.ToList());
-            return cleanLevelListDto;
+            List<CleanLevelDTo> cleanList = CleanLevelDTo.convertToListDTO(db.cleanLevels.ToList());
+            return cleanList;
+        }
+        public static int getCleanLevelIdByName(string cleanLevelName)
+        {
+            int id = db.cleanLevels.Where(x => x.cleanLevel == cleanLevelName)
+                .Select(y => y.levelId).FirstOrDefault();
+            return id;
         }
     }
 }

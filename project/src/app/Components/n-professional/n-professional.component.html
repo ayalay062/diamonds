@@ -1,100 +1,111 @@
+<form class="form-wrapper form-wrapper-big" [formGroup]="formProfessianol" (ngSubmit)="onSubmit()">
 
-<mat-card-title>
-    בעל מקצוע חדש
-</mat-card-title>
-<mat-card>
-    <mat-card-content>
-        <form [formGroup]="formProfessianol" (ngSubmit)="onSubmit()">
-            <table>
+    <h1> בעל מקצוע חדש</h1>
+    <table style="    direction: rtl;
+    width: 100%;">
+        <tr>
+            <mat-form-field class="demo-full-width">
+                <input formControlName="EntringName" matInput placeholder="שם משתמש">
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="!formProfessianol.get('EntringName').valid"> חובה להזין שם משתמש </span>
+            </mat-error>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field class="demo-full-width">
+                    <input type="password" formControlName="Password" matInput placeholder="סיסמא" minlength="6">
+                </mat-form-field>
+                <mat-error>
 
-                <tr>
-                    <mat-form-field class="demo-full-width">
-                        <input formControlName="EntringName" matInput placeholder="שם כניסה">
-                    </mat-form-field>
-                    <mat-error>
-                        <span *ngIf="!formProfessianol.get('EntringName').valid"> !הכנס שם כניסה </span>
-                    </mat-error>
-                </tr>
-                <tr>
-                    <mat-form-field class="demo-full-width">
-                        <input type="password" formControlName="passwordAuthentication" matInput placeholder=":אימות סיסמא">
-                    </mat-form-field>
-                    <mat-error>
-                        <span *ngIf="formProfessianol.get('passwordAuthentication').valid != formProfessianol.get('Password').valid && formProfessianol.get('passwordAuthentication').touched">
-                            !הסיסמא שגויה</span>
-                    </mat-error>
-                    <td>
-                        <mat-form-field class="demo-full-width">
-                            <input type="password" formControlName="Password" matInput placeholder="סיסמא:">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!formProfessianol.get('Password').valid">!!הקש סיסמא</span>
-                        </mat-error>
-                    </td>
-                </tr>
-                <tr>
-                    <mat-form-field class="demo-full-width">
-                        <input formControlName="LastName" matInput placeholder="שם משפחה:">
-                    </mat-form-field>
-                    <mat-error>
-                        <span *ngIf="!formProfessianol.get('LastName').valid && formProfessianol.get('LastName').touched">!הכנס שם משפחה</span>
-                    </mat-error>
-                    <td>
-                        <mat-form-field class="demo-full-width">
-                            <input formControlName="FirstName" matInput placeholder="שם פרטי:">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!formProfessianol.get('FirstName').valid && formProfessianol.get('FirstName').touched">!הכנס שם פרטי</span>
-                        </mat-error>
-                    </td>
-                </tr>
-                <tr>
-                    <mat-form-field class="demo-full-width">
-                        <input formControlName="Mobile" matInput placeholder="נייד:">
-                    </mat-form-field>
-                    <mat-error>
-                        <span *ngIf="!formProfessianol.get('Mobile').valid && formProfessianol.get('Mobile').touched">:הכנס מספר נייד</span>
-                    </mat-error>
-                    <td>
-                        <mat-form-field class="demo-full-width">
-                            <input formControlName="Mail" matInput placeholder="E-mail">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!formProfessianol.get('Mail').valid && formProfessianol.get('Mail').touched">:הכנס כתובת מייל</span>
-                        </mat-error>
-                    </td>
-                </tr>
-                <tr>
-                    <mat-form-field>
-                        <input formControlName="price" matInput placeholder="מחיר:">
-                    </mat-form-field>
-                    <mat-error>
-                        <span *ngIf="!formProfessianol.get('price').valid && formProfessianol.get('price').touched">!עדכן מחיר</span>
-                    </mat-error>
-                    <td>
-                    <mat-form-field>
-                        <mat-select formControlName="status" matInput placeholder="סטטוס">
-                            <mat-option *ngFor="let status of statusList" [value]="status.status1">{{status.status1}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!formProfessianol.get('status').valid && formProfessianol.get('status').touched ">!בחר סטטוס</span>
-                        </mat-error>
-                    </td>
-                </tr>
-                <!-- <button (click)="alert(validate())">check</button> -->
-                <tr>
-                    <td class="content-center">
-                        <button type="submit" mat-raised-button color="primary" [disabled]="!formProfessianol.valid||!validatePass()">אישור</button>
-                    </td>
-                    <td class="content-center">
-                            <button (click)="validate()">check</button>
+                    <span *ngIf="formProfessianol.get('Password').hasError('required')" style="font-size: 12px;"> חובה להזין סיסמא</span>
+                    <span *ngIf="formProfessianol.get('Password').hasError('minlength')" style="font-size: 12px;"> חובה להזין מינימום 6 תווים</span>
 
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </mat-card-content>
 
-</mat-card>
-<button (click)="alert(validate())">check</button>
+                </mat-error>
+            </td>
+
+            <mat-form-field class="demo-full-width">
+                <input type="password" formControlName="passwordAuthentication" matInput placeholder="אימות סיסמא">
+            </mat-form-field>
+            <mat-error>
+
+                <span *ngIf="
+                (formProfessianol.get('passwordAuthentication').touched || formProfessianol.get('Password').touched)
+                && formProfessianol.get('passwordAuthentication').value!= formProfessianol.get('Password').value ">
+                            הסיסמא לא תואמת</span>
+            </mat-error>
+
+        </tr>
+        <tr>
+            <mat-form-field class="demo-full-width">
+                <input formControlName="LastName" matInput placeholder="שם משפחה">
+            </mat-form-field>
+            <mat-error>
+
+                <span *ngIf="!formProfessianol.get('LastName').valid && formProfessianol.get('LastName').touched" style="font-size: 12px;"> חובה להזין שם משפחה</span>
+                <span *ngIf="formProfessianol.get('LastName').hasError('minlength')" style="font-size: 12px;"> חובה להזין מינימום 2 תווים</span>
+
+
+            </mat-error>
+            <td>
+                <mat-form-field class="demo-full-width">
+                    <input formControlName="FirstName" matInput placeholder="שם פרטי">
+                </mat-form-field>
+                <mat-error>
+                    <span *ngIf="!formProfessianol.get('FirstName').valid && formProfessianol.get('FirstName').touched">חובה להזין שם פרטי</span>
+                </mat-error>
+            </td>
+        </tr>
+        <tr>
+            <mat-form-field class="demo-full-width">
+                <input formControlName="Mobile" matInput placeholder="נייד">
+            </mat-form-field>
+            <mat-error>
+
+                <span *ngIf="!formProfessianol.get('Mobile').valid && formProfessianol.get('Mobile').touched" style="font-size: 12px;"> חובה להזין נייד </span>
+                <span *ngIf="formProfessianol.get('Mobile').hasError('minlength')" style="font-size: 12px;"> חובה להזין מינימום 10 תווים</span>
+
+
+            </mat-error>
+            <td>
+                <mat-form-field class="demo-full-width">
+                    <input formControlName="Mail" matInput placeholder="אימייל">
+                </mat-form-field>
+                <mat-error>
+                    <span *ngIf="!formProfessianol.get('Mail').valid && formProfessianol.get('Mail').touched" style="font-size: 12px;"> חובה להזין אימייל </span>
+                    <span *ngIf="formProfessianol.get('Mail').hasError('email')" style="font-size: 12px;">כתובת מייל לא תקינה</span>
+                </mat-error>
+            </td>
+        </tr>
+        <tr>
+            <mat-form-field>
+                <input formControlName="price" matInput placeholder="מחיר" type="number">
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="!formProfessianol.get('price').valid && formProfessianol.get('price').touched">חובה להזין מחיר</span>
+            </mat-error>
+            <td>
+                <mat-form-field>
+                    <mat-select formControlName="status" matInput placeholder="סטטוס">
+                        <mat-option *ngFor="let status of statusList" [value]="status.status1">{{status.status1}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error>
+                    <span *ngIf="!formProfessianol.get('status').valid && formProfessianol.get('status').touched ">חובה לבחור סטטוס</span>
+                </mat-error>
+            </td>
+        </tr>
+        <!-- <button (click)="alert(validate())">check</button> -->
+        <tr>
+            <td colspan="2" class="content-center">
+                <button type="submit" mat-raised-button class="btn-color" [disabled]="!formProfessianol.valid">אישור</button>
+            </td>
+            <!-- <td class="content-center">
+                    <button (click)="validate()">check</button>
+
+                </td> -->
+        </tr>
+    </table>
+    <br>
+</form>

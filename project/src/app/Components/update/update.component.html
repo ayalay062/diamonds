@@ -1,35 +1,54 @@
-<span>{{header}}</span>
-<br>
-<br>
-<br>
-<span>שם יהלום: </span>
-<input  type="text" style="width:10%">
- <!-- [(ngModel)]="content.diamondName"  -->
-<br>
-<br>
-<span>רמת נקיון: {{content.cleanLevelName}}</span>
-<mat-select class="sizeLevelClass"  matInput placeholder=""(click)="onFlag()">
-    <div *ngIf="flag">
-    <mat-option name="hhh" *ngFor="let level of cleanList" [value]="level" >
-        {{level.CleanLevel}}
-    </mat-option>
+<div class="form-wrapper">
+    <form [formGroup]="form" (ngSubmit)="updateConfirm()">
+        <h1>עדכון יהלום</h1>
+
+        <mat-form-field>
+            <input type="text" matInput formControlName="diamondName" placeholder="שם היהלום :"> </mat-form-field>
+        <mat-error>
+            <span *ngIf="!form.get('diamondName').valid && form.get('diamondName').touched">חובה להזין  שם</span>
+        </mat-error>
+
+        <mat-form-field>
+            <mat-select matInput formControlName="cleanLevelName" placeholder="רמת נקיון:">
+                <mat-option *ngFor="let level of cleanList" [value]="level">{{level.CleanLevel}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-error>
+            <span *ngIf="!form.get('cleanLevelName') .valid && form.get('cleanLevelName').touched">חובה להזין  רמת ניקיון</span>
+        </mat-error>
+
+        <mat-form-field>
+            <mat-select matInput formControlName="colorName" placeholder="צבע :">
+                <mat-option *ngFor="let color of colorList" [value]="color">{{color.Color}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-error>
+            <span *ngIf="!form.get('colorName').valid && form.get('colorName').touched">חובה להזין  צבע</span>
+        </mat-error>
+
+        <mat-form-field>
+            <mat-select matInput formControlName="shapeName" placeholder="צורה :">
+                <mat-option *ngFor="let shape of shapeList" [value]="shape">{{shape.shape}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-error>
+            <span *ngIf="!form.get('shapeName').valid && form.get('shapeName').touched">חובה להזין  צורה</span>
+        </mat-error>
+
+        <mat-form-field>
+            <input type="number" formControlName="CT" matInput placeholder="קראט:">
+        </mat-form-field>
+        <mat-error>
+            <span *ngIf="!form.get('CT').valid && form.get('CT').touched">חובה להזין  קראט</span>
+        </mat-error>
+
+        <!-- <mat-form-field>
+            <input type="number" formControlName="price" matInput placeholder="מחיר:">
+        </mat-form-field>
+        <mat-error>
+            <span *ngIf="!form.get('price').valid && form.get('price').touched">חובה להזין  מחיר</span>
+        </mat-error> -->
+
+        <button type="submit" class="btn-color" [disabled]="!form.valid">אישור</button>
+    </form>
 </div>
-</mat-select>
-<br>
-<br>
-<span>צורה: {{content.shapeName}}</span>
-<mat-select  class="sizeShapeClass" matInput placeholder=""(click)="getShapeList()">
-    <mat-option name="hhy" *ngFor="let shape of shapeList"[value]="shape.shape" >
-        {{shape.shape}}</mat-option>
-</mat-select>
-<br>
-<br>
-<span>קראט: </span>
-<input type="text" style="width:13%">
-<br>
-<br>
-<br>
-<button mat-raised-button class="b" (click)="updateConfirm()">אישור</button>
-
-
-
