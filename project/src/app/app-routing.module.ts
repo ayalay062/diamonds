@@ -8,6 +8,7 @@ import { NProfessionalComponent } from './Components/n-professional/n-profession
 import { DiamondOfProfessionalComponent } from './Components/diamond-of-professional/diamond-of-professional.component';
 import { AddNewDiammondComponent } from './Components/add-new-diammond/add-new-diammond.component';
 import { DeleteComponent } from './Components/delete/delete.component';
+import { DiamondsSaleComponent } from './Components/diamonds-sale/diamonds-sale.component';
 
 
 
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: "new-trader", component: NewtraderComponent },
   { path: "diamond-details", component: DiamonddetailsComponent },
   { path: "diamonds-of-trader", component: DiamondsoftraderComponent },
+  { path: "diamonds-sale", component: DiamondsSaleComponent },
+
   { path: "n-professional", component: NProfessionalComponent },
   { path: "diamond-of-professional", component:DiamondOfProfessionalComponent},
   { path: "add-new-diammond", component: AddNewDiammondComponent},

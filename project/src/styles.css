@@ -9,7 +9,7 @@ body {
     font-family: ass, Roboto, "Helvetica Neue", sans-serif;
     text-align: right;
     direction: rtl;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-infix,
@@ -249,8 +249,8 @@ mat-footer-row,
     line-height: 28px;
     width: 80%;
     opacity: 0.8;
-    height: calc(90% - 124px);
-    top: 5%;
+    height: 100%;
+    top: 0;
 }
 
 .form-wrapper-modal-w {

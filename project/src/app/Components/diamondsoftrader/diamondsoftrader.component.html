@@ -51,6 +51,10 @@
     </article>
 
     <nav class="nav">
+
+
+        <button mat-stroked-button class="btn-nocolor" routerLink="../diamonds-sale">  יהלומים שהוצאו למכירה</button>
+        <br> <br>
         <button mat-stroked-button class="btn-nocolor" (click)="getDiamondsOfFinishStatus()"> יהלומים שסימו סטטוס</button>
 
         <button mat-stroked-button class="btn-nocolor" *ngFor="let item of statusList" (click)="getDiamondDeatails(item)"> {{item.diamondName}}</button>

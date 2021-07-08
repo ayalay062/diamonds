@@ -1,0 +1,61 @@
+<div class="form-wrapper-large">
+    <br>
+    <h1 style="width:200px">יהלומים למכירה</h1>
+    <br>
+
+    <article class="article">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="    width: 80%;margin:auto" display="flex">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>שם יהלום</th>
+                <td mat-cell *matCellDef="let element">{{element.diamondName}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="colorName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>צבע</th>
+                <td mat-cell *matCellDef="let element">{{element.colorName}}</td>
+            </ng-container>
+            <ng-container matColumnDef="shapeName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>צורה</th>
+                <td mat-cell *matCellDef="let element">{{element.shapeName}}</td>
+            </ng-container>
+            <ng-container matColumnDef="CT">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>קראט</th>
+                <td mat-cell *matCellDef="let element">{{element.CT}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="monOut">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>הוצאות ליהלום</th>
+                <td mat-cell *matCellDef="let element"> <input type="number" matInput></td>
+            </ng-container>
+
+            <ng-container matColumnDef="monToPay">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>סכום לתשלום</th>
+                <td mat-cell *matCellDef="let element"> <input type="number" matInput></td>
+            </ng-container>
+
+            <ng-container matColumnDef="prec">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>אחוז מחירון</th>
+                <td mat-cell *matCellDef="let element"> <input type="number" matInput></td>
+            </ng-container>
+            <ng-container matColumnDef="totalMo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>סכום סופי</th>
+                <td mat-cell *matCellDef=" let element ">
+                    <input type="number " matInput> </td>
+            </ng-container>
+            <ng-container matColumnDef="remove">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>שמירה</th>
+                <td mat-cell *matCellDef="let element ">
+
+                    <mat-icon (click)="saveDiamomd(element.diamondId) ">system_update_alt</mat-icon>
+
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
+        </table>
+
+    </article>
+
+
+</div>

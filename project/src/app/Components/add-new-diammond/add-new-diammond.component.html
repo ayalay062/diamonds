@@ -1,7 +1,8 @@
 <div class="form-wrapper">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <h1>הוספת יהלום</h1>
+        <mat-icon style="float: left;" routerLink="../diamonds-of-trader">close</mat-icon>
 
+        <h1>הוספת יהלום</h1>
         <mat-form-field>
             <input type="text" matInput formControlName="diamondName" placeholder="שם היהלום :"> </mat-form-field>
         <mat-error>
