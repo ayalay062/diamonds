@@ -33,6 +33,7 @@ namespace DB
         public virtual DbSet<professionales> professionales { get; set; }
         public virtual DbSet<shapes> shapes { get; set; }
         public virtual DbSet<status> status { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<traderDiamonds> traderDiamonds { get; set; }
         public virtual DbSet<users> users { get; set; }
     }

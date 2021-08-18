@@ -4,21 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8472edb64723471f99a3ea2fe598269a" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="DiampndsDBModel.cleanLevels" Width="1.5" PointX="0.75" PointY="10.25" />
-        <EntityTypeShape EntityType="DiampndsDBModel.colors" Width="1.5" PointX="0.75" PointY="7" />
-        <EntityTypeShape EntityType="DiampndsDBModel.Diamonds" Width="1.5" PointX="3" PointY="6.25" />
-        <EntityTypeShape EntityType="DiampndsDBModel.diamondStatus" Width="1.5" PointX="5.25" PointY="2.25" />
-        <EntityTypeShape EntityType="DiampndsDBModel.priceList" Width="1.5" PointX="6" PointY="6.375" />
-        <EntityTypeShape EntityType="DiampndsDBModel.professionales" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="DiampndsDBModel.shapes" Width="1.5" PointX="0.75" PointY="3.625" />
-        <EntityTypeShape EntityType="DiampndsDBModel.status" Width="1.5" PointX="0.75" PointY="13.375" />
-        <EntityTypeShape EntityType="DiampndsDBModel.traderDiamonds" Width="1.5" PointX="8.25" PointY="6.625" />
-        <EntityTypeShape EntityType="DiampndsDBModel.users" Width="1.5" PointX="6" PointY="10.5" />
+      <Diagram DiagramId="868ab9eeb624434f9735bc0bd2aa1797" Name="Diagram1">
+        <EntityTypeShape EntityType="DiampndsDBModel.cleanLevels" Width="1.5" PointX="3.75" PointY="10.5" />
+        <EntityTypeShape EntityType="DiampndsDBModel.colors" Width="1.5" PointX="3.75" PointY="4" />
+        <EntityTypeShape EntityType="DiampndsDBModel.DiamondPrices" Width="1.5" PointX="10.5" PointY="6.875" />
+        <EntityTypeShape EntityType="DiampndsDBModel.Diamonds" Width="1.5" PointX="6" PointY="6.5" />
+        <EntityTypeShape EntityType="DiampndsDBModel.diamondStatus" Width="1.5" PointX="8.25" PointY="2.5" />
+        <EntityTypeShape EntityType="DiampndsDBModel.priceList" Width="1.5" PointX="3" PointY="6.625" />
+        <EntityTypeShape EntityType="DiampndsDBModel.professionales" Width="1.5" PointX="6" PointY="1" />
+        <EntityTypeShape EntityType="DiampndsDBModel.shapes" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="DiampndsDBModel.status" Width="1.5" PointX="3.75" PointY="1.25" />
+        <EntityTypeShape EntityType="DiampndsDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DiampndsDBModel.traderDiamonds" Width="1.5" PointX="8.25" PointY="6.875" />
+        <EntityTypeShape EntityType="DiampndsDBModel.users" Width="1.5" PointX="6" PointY="10.875" />
         <AssociationConnector Association="DiampndsDBModel.FK_Diamonds_cleanLevels" />
         <AssociationConnector Association="DiampndsDBModel.FK_priceList_cleanLevels" />
         <AssociationConnector Association="DiampndsDBModel.FK_Diamonds_colors" />
         <AssociationConnector Association="DiampndsDBModel.FK_priceList_colors" />
+        <AssociationConnector Association="DiampndsDBModel.FK_diamonds_prices" />
+        <AssociationConnector Association="DiampndsDBModel.FK_trader_prices" />
         <AssociationConnector Association="DiampndsDBModel.FK_Diamonds_shapes" />
         <AssociationConnector Association="DiampndsDBModel.FK_diamondStatus_Diamonds" />
         <AssociationConnector Association="DiampndsDBModel.FK_traderDiamonds_Diamonds" />

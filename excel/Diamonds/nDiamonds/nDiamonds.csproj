@@ -110,6 +110,7 @@
     <Compile Include="readFromExcel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Excels\LISTS.xlsx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Excel=Microsoft.Office.Interop.Excel;
 using DB;
-
+using System.IO;
 
 namespace nDiamonds
 {
@@ -14,7 +14,7 @@ namespace nDiamonds
         public static void readFromExcel1()
         {
             Excel.Application xlApp = new Excel.Application();
-            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"F:\תיקייה כללית\שנה ב תשפ\פרויקטים\גילי ומירי\LISTS.xlsx");
+            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(AppDomain.CurrentDomain.BaseDirectory +  @"\Excels\LISTS.xlsx");
            
             for (int i = 1; i < 4; i++)
             {
